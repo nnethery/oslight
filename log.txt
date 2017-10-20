@@ -1,0 +1,139 @@
+Checking for <err.h>... yes
+Checking for ntohll()...no
+Generating defs.mk.
+(cd kern && bmake includes)
+../mk/installheaders.sh include/kern ../build/install/include/kern
+../mk/installheaders.sh arch/mips/include/kern ../build/install/include/kern/mips
+(cd userland && bmake includes)
+../mk/installheaders.sh include ../build/install/include
+../mk/installheaders.sh include/sys ../build/install/include/sys
+../mk/installheaders.sh include/test ../build/install/include/test
+../mk/installheaders.sh include/types ../build/install/include/types
+[ -h ../build/install/include/machine ] ||  ln -sf kern/machine ../build/install/include/machine
+[ -h ../build/install/include/kern/machine ] ||  ln -sf mips ../build/install/include/kern/machine
+(cd lib/hostcompat && bmake includes)
+[ -h ../../../build/install/hostinclude/kern ] ||  ln -sf ../include/kern ../../../build/install/hostinclude/kern
+(cd userland && bmake build)
+(cd lib && bmake build)
+(cd crt0 && bmake build)
+mips-harvard-os161-gcc -O2 -Wall -W -Wwrite-strings -Wmissing-prototypes -Werror -std=gnu99 -mno-abicalls -fno-pic -nostdinc  -I../../../build/install/include -M mips/crt0.S | ../../../mk/fixdepends.sh '../../../build/install' native  > ../../../build/userland/lib/crt0/.deptmp
+/bin/sh: 1: mips-harvard-os161-gcc: not found
+mv -f ../../../build/userland/lib/crt0/.deptmp ../../../build/userland/lib/crt0/.depend
+bmake all-local
+mips-harvard-os161-gcc -O2 -Wall -W -Wwrite-strings -Wmissing-prototypes -Werror -std=gnu99 -mno-abicalls -fno-pic -nostdinc  -I../../../build/install/include -c mips/crt0.S -o ../../../build/userland/lib/crt0/crt0.o
+/bin/sh: 1: mips-harvard-os161-gcc: not found
+*** Error code 127
+
+Stop.
+bmake: stopped in /home/noah/Documents/oslight/userland/lib/crt0
+*** Error code 1
+
+Stop.
+bmake: stopped in /home/noah/Documents/oslight/userland/lib/crt0
+*** Error code 1
+
+Stop.
+bmake: stopped in /home/noah/Documents/oslight/userland/lib
+*** Error code 1
+
+Stop.
+bmake: stopped in /home/noah/Documents/oslight/userland
+*** Error code 1
+
+Stop.
+bmake: stopped in /home/noah/Documents/oslight
+(cd ./build/install && tar -cf - .) | (cd /home/noah/os161/root && tar -xvf -)
+./
+./hostinclude/
+./hostinclude/hostcompat.h
+./hostinclude/kern
+./include/
+./include/sys/
+./include/sys/reboot.h
+./include/sys/cdefs.h
+./include/sys/stat.h
+./include/sys/wait.h
+./include/sys/endian.h
+./include/sys/null.h
+./include/sys/types.h
+./include/sys/ioctl.h
+./include/types/
+./include/types/size_t.h
+./include/errno.h
+./include/signal.h
+./include/stdbool.h
+./include/stdio.h
+./include/assert.h
+./include/fcntl.h
+./include/stdlib.h
+./include/unistd.h
+./include/stdint.h
+./include/err.h
+./include/stdarg.h
+./include/kern/
+./include/kern/syscall.h
+./include/kern/errno.h
+./include/kern/signal.h
+./include/kern/reboot.h
+./include/kern/errmsg.h
+./include/kern/stat.h
+./include/kern/seek.h
+./include/kern/sfs.h
+./include/kern/wait.h
+./include/kern/socket.h
+./include/kern/resource.h
+./include/kern/fcntl.h
+./include/kern/unistd.h
+./include/kern/endian.h
+./include/kern/types.h
+./include/kern/ioctl.h
+./include/kern/iovec.h
+./include/kern/limits.h
+./include/kern/mips/
+./include/kern/mips/signal.h
+./include/kern/mips/endian.h
+./include/kern/mips/regdefs.h
+./include/kern/mips/types.h
+./include/kern/mips/setjmp.h
+./include/kern/time.h
+./include/kern/stattypes.h
+./include/kern/machine
+./include/setjmp.h
+./include/limits.h
+./include/test/
+./include/test/quint.h
+./include/test/triple.h
+./include/time.h
+./include/machine
+./include/string.h
+Configuration DUMBVM
+Generating files... opt-dumbvm.h opt-net.h opt-netfs.h opt-noasserts.h opt-semfs.h opt-sfs.h opt-synchprobs.h files.mk Makefile autoconf.h autoconf.c
+Configuration in ../compile/DUMBVM done
+Remember to make depend
+bmake includelinks
+`includelinks' is up to date.
+rm -f .depend.* || true
+bmake realdepend
+mips-harvard-os161-gcc -g -Wall -W -Wwrite-strings -Wmissing-prototypes -Werror -std=gnu99 -mno-abicalls -fno-pic -ffixed-23 -nostdinc -I../../include -I../../dev -I. -Iincludelinks -ffreestanding -D_KERNEL -M ../../../common/libc/printf/__printf.c > .depend.__printf.c
+/bin/sh: 1: mips-harvard-os161-gcc: not found
+*** Error code 127
+
+Stop.
+bmake: stopped in /home/noah/Documents/oslight/kern/compile/DUMBVM
+*** Error code 1
+
+Stop.
+bmake: stopped in /home/noah/Documents/oslight/kern/compile/DUMBVM
+mips-harvard-os161-gcc -g -Wall -W -Wwrite-strings -Wmissing-prototypes -Werror -std=gnu99 -mno-abicalls -fno-pic -ffixed-23 -nostdinc -I../../include -I../../dev -I. -Iincludelinks -ffreestanding -D_KERNEL -c ../../../common/libc/printf/__printf.c
+/bin/sh: 1: mips-harvard-os161-gcc: not found
+*** Error code 127
+
+Stop.
+bmake: stopped in /home/noah/Documents/oslight/kern/compile/DUMBVM
+[ -d /home/noah/os161/root ] || mkdir /home/noah/os161/root
+cp kernel /home/noah/os161/root/kernel-DUMBVM
+cp: cannot stat 'kernel': No such file or directory
+*** Error code 1
+
+Stop.
+bmake: stopped in /home/noah/Documents/oslight/kern/compile/DUMBVM
