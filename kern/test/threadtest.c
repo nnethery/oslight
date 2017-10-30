@@ -144,3 +144,35 @@ threadtest2(int nargs, char **args)
 
 	return 0;
 }
+
+static void joinfunc(void *temp, unsigned long t) {
+	(void) temp;
+	kprintf("Inside the join function call for %ld\n", t);
+}
+
+static void testjoin() {
+	struct thread* threadlist[NTHREADS];
+	int n;
+	for (n = 0; n < NTHREADS; n++) {
+		kprintf("Thread %d forked", n);
+		forkT("child", &(threadlist[n]), NULL, &joinfunc, NULL, n);
+	}
+
+	int val;
+	for(n = 0; n < NTHREADS; n++) {
+		kprintf("Joining thread: %d\n", n);
+		thread_join(threadlist[n], &val);
+		kprintf("Thread_join result: %d\n", val);
+	}
+}
+
+int threadtest4(int nargs, char **args) {
+	(void)nargs;
+	(void)args;
+
+	init_sem();
+	kprintf("Starting thread test 4...\n");
+	testjoin();
+	kprintf("\nThread test 2 done.\n");
+	return 0;
+}
